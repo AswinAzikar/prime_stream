@@ -16,6 +16,9 @@ dependencies:
   get: ^4.6.6
   flutter_svg: ^2.0.14
   flutter_gen: ^5.8.0
+  gap: ^3.0.1
+  neopop: ^1.0.2
+  logger: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +31,8 @@ flutter:
   
   assets:
     - assets/fonts/  
+    - assets/jpgs/
+    - assets/svgs/
 
   fonts:
     - family: NetflixSans
