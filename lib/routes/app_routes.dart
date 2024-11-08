@@ -6,7 +6,7 @@ class AppRoutes {
   static const home = '/';
   static const landingScreen = '/LandingScreen';
 
-  final List<GetPage> pages = [
+  static final List<GetPage> pages = [
     GetPage(
       name: landingScreen,
       page: () => const LandingScreen(),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:prime_stream/routes/app_routes.dart';
 import 'package:prime_stream/utils/size_utils.dart';
 
 void main() {
@@ -10,7 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      initialRoute: AppRoutes.landingScreen,
+      getPages: AppRoutes.pages,
       builder: (context, child) => Sizer(
         builder: (context, orientation, deviceType) {
           return child ?? const SizedBox();

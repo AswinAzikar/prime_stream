@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:prime_stream/constants/constants.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: softBlack,
+    );
   }
 }
