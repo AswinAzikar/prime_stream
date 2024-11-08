@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 
 import 'package:prime_stream/constants/constants.dart';
 import 'package:prime_stream/gen/assets.gen.dart';
@@ -34,7 +36,25 @@ class LandingScreen extends StatelessWidget {
                   child: SvgPicture.asset(
                     Assets.svgs.gradeintCover,
                     width: SizeUtils.width,
-                  ))
+                  )),
+              Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Column(
+                    children: [
+                      const NeoButton(text: "Get Started!"),
+                      Gap(paddingXL.fSize),
+                    ],
+                  )),
+              Positioned(
+                  left: 0,
+                  bottom: 0,
+                  top: 0,
+                  child: AnimatedTextKit(
+
+                  
+                      animatedTexts: [TyperAnimatedText("Stream ")]))
             ],
           ),
         ],

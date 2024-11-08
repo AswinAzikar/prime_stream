@@ -19,6 +19,7 @@ dependencies:
   gap: ^3.0.1
   neopop: ^1.0.2
   logger: ^2.4.0
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
