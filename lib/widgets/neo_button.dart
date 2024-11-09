@@ -23,11 +23,16 @@ class NeoButton extends StatelessWidget {
     return NeoPopButton(
       onTapUp: () {
         HapticFeedback.selectionClick();
-        onTapUp?.call();
+        if (onTapDown == null) {
+          onTapUp?.call();
+        }
       },
       onTapDown: () {
         HapticFeedback.lightImpact();
-        onTapDown?.call();
+        HapticFeedback.selectionClick();
+        if (onTapUp == null) {
+          onTapDown?.call();
+        }
       },
       border: Border.all(
         style: BorderStyle.solid,
