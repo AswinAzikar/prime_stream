@@ -1,12 +1,14 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:prime_stream/views/home_screen.dart';
 import 'package:prime_stream/views/landing_screen.dart';
+import 'package:prime_stream/views/splash_screen/splash_screen.dart';
 
 import '../views/navigation_screen.dart';
 
 class AppRoutes {
-  static const navigationScreen = '/navigationScreen' ;
-static const landingScreen = '/landingScreen';
+  static const navigationScreen = '/navigationScreen';
+  static const landingScreen = '/landingScreen';
+  static const splashScreen = '/splashScreen';
 
   static final List<GetPage> pages = [
     GetPage(
@@ -16,6 +18,10 @@ static const landingScreen = '/landingScreen';
     GetPage(
       name: navigationScreen,
       page: () => const NavigationScreen(),
+    ),
+    GetPage(
+      name: splashScreen,
+      page: () => SplashScreen(),
     )
   ];
 }

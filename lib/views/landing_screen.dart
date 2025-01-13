@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:prime_stream/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,24 +20,28 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  // ignore: unused_field
   bool _isFirstTime = true;
 
   @override
   void initState() {
     super.initState();
+    _initializeFirstTimeState();
+  }
+
+  Future<void> _initializeFirstTimeState() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isFirstTime = prefs.getBool("_isFirstTime") ?? true;
+    });
   }
 
   Future<void> _changeLoginState() async {
     final prefs = await SharedPreferences.getInstance();
-
     await prefs.setBool("_isFirstTime", false);
-
     setState(() {
       _isFirstTime = false;
     });
-    // Logger().e("Navigating to the Navigation Screen");
-    Get.toNamed(AppRoutes.navigationScreen);
+    Get.toNamed(AppRoutes.splashScreen);
   }
 
   @override
@@ -47,6 +50,7 @@ class _LandingScreenState extends State<LandingScreen> {
       backgroundColor: softBlack,
       body: Stack(
         children: [
+          // Background Image
           Positioned.fill(
             child: Image.asset(
               Assets.jpgs.landingImage.path,
@@ -55,6 +59,8 @@ class _LandingScreenState extends State<LandingScreen> {
               width: SizeUtils.width,
             ),
           ),
+
+          // Gradient Overlay
           Positioned(
             bottom: 0,
             child: SvgPicture.asset(
@@ -62,6 +68,8 @@ class _LandingScreenState extends State<LandingScreen> {
               width: SizeUtils.width,
             ),
           ),
+
+          // Main Content
           Positioned(
             left: 0,
             right: 0,
@@ -71,47 +79,33 @@ class _LandingScreenState extends State<LandingScreen> {
                 Gap(20.fSize),
                 NeoButton(
                   text: "Get Started!",
-                  onTapDown: () {
-                    _changeLoginState();
-                  },
+                  onTapDown: _changeLoginState,
                 ),
                 Gap(paddingXL.fSize),
               ],
             ),
           ),
+
+          // Animated Text
           Positioned(
             left: 20,
             top: SizeUtils.height / 3,
             child: DefaultTextStyle(
               style: context.netflixSansLight.copyWith(
-                  fontSize: 40.fSize,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100),
+                fontSize: 40.fSize,
+                color: Colors.white,
+                fontWeight: FontWeight.w100,
+              ),
               child: SizedBox(
-                width: SizeUtils.width,
-                child: Row(
-                  children: [
-                    Divider(
-                      thickness: 2.fSize,
-                      color: Colors.white,
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            AnimatedTextKit(
-                              animatedTexts: [
-                                TyperAnimatedText(
-                                    " Stream\n Movies and Series\n anywhere\n for free. "),
-                              ],
-                              repeatForever: false,
-                            ),
-                          ],
-                        ),
-                      ],
+                width: SizeUtils.width - 40, // Adjusted for padding
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      "Stream\nMovies and Series\nanywhere\nfor free.",
+                      textAlign: TextAlign.start,
                     ),
                   ],
+                  repeatForever: false,
                 ),
               ),
             ),

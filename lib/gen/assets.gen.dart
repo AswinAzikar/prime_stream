@@ -43,8 +43,11 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/gradeint_cover.svg
   String get gradeintCover => 'assets/svgs/gradeint_cover.svg';
 
+  /// File path: assets/svgs/prime_stream_logo.svg
+  String get primeStreamLogo => 'assets/svgs/prime_stream_logo.svg';
+
   /// List of all assets
-  List<String> get values => [gradeintCover];
+  List<String> get values => [gradeintCover, primeStreamLogo];
 }
 
 class Assets {
